@@ -18,11 +18,11 @@ const dbb = new db()
 //server will use long polling and constantly hit the telegram server for chats
 
 
-const { TOKEN, SERVER_URL,CLIENT_ID,CLIENT_SECRET } = process.env
-const bot = new Bot(`${TOKEN}`);
-const TELEGRAM_API = `https://api.telegram.org/bot${TOKEN}`
-const URI = `/webhook/${TOKEN}`
-const WEBHOOK_URL = SERVER_URL + URI
+const { TOKEN,CLIENT_ID,CLIENT_SECRET } = process.env
+// const bot = new Bot(`${TOKEN}`);
+// const TELEGRAM_API = `https://api.telegram.org/bot${TOKEN}`
+// const URI = `/webhook/${TOKEN}`
+// const WEBHOOK_URL = SERVER_URL + URI
 
 
 const app = express()
@@ -571,47 +571,3 @@ return [username,tid]
 }
 
 
-
-// bot.on("message:photo",async (ctx) => {
-//     let chat = await ctx.getChat()
-//     console.log(chat)
-//     let file = await ctx.getFile()
-//     console.log(file)
-//     //link valid only for one hour
-//     //https://api.telegram.org/file/bot5955927453:AAGWJVJ0eOqqB5DH-ATwhsOUWWSa1AK8hy0/photos/file_0.jpg
-//     //store file id and get it using getFile -> file_id: 'AgACAgUAAxkBAAMgZMoHRI8JHBwBT86VLwwiYYWRItQAAiG5MRsucVBWVxu7KQh0RBUBAAMCAAN5AAMvBA'
-// })
-// {
-//     id: '105218153533475071134',
-//     displayName: 'SINGVALLIYAPPA V IT',
-//     name: { familyName: 'IT', givenName: 'SINGVALLIYAPPA V' },
-//     emails: [ { value: '2021it0673@svce.ac.in', verified: true } ],
-//     photos: [
-//       {
-//         value: 'https://lh3.googleusercontent.com/a/AAcHTtfMC9TU_nZ1IvmzD34AZJCAUtUxkCmYRdJEym7I9R9W=s96-c'
-//       }
-//     ],
-//     provider: 'google',
-//     _raw: '{\n' +
-//       '  "sub": "105218153533475071134",\n' +
-//       '  "name": "SINGVALLIYAPPA V IT",\n' +
-//       '  "given_name": "SINGVALLIYAPPA V",\n' +
-//       '  "family_name": "IT",\n' +
-//       '  "picture": "https://lh3.googleusercontent.com/a/AAcHTtfMC9TU_nZ1IvmzD34AZJCAUtUxkCmYRdJEym7I9R9W\\u003ds96-c",\n' +
-//       '  "email": "2021it0673@svce.ac.in",\n' +
-//       '  "email_verified": true,\n' +
-//       '  "locale": "en",\n' +
-//       '  "hd": "svce.ac.in"\n' +
-//       '}',
-//     _json: {
-//       sub: '105218153533475071134',
-//       name: 'SINGVALLIYAPPA V IT',
-//       given_name: 'SINGVALLIYAPPA V',
-//       family_name: 'IT',
-//       picture: 'https://lh3.googleusercontent.com/a/AAcHTtfMC9TU_nZ1IvmzD34AZJCAUtUxkCmYRdJEym7I9R9W=s96-c',
-//       email: '2021it0673@svce.ac.in',
-//       email_verified: true,
-//       locale: 'en',
-//       hd: 'svce.ac.in'
-//     }
-//   }
