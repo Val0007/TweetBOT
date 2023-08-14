@@ -19,6 +19,7 @@ const dbb = new db()
 
 
 const { TOKEN,CLIENT_ID,CLIENT_SECRET } = process.env
+console.log("Token is",TOKEN)
 const bot = new Bot(`${TOKEN}`);
 // const TELEGRAM_API = `https://api.telegram.org/bot${TOKEN}`
 // const URI = `/webhook/${TOKEN}`
