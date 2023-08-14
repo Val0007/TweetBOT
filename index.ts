@@ -10,6 +10,8 @@ import session from 'express-session'
 import db from './db'
 import {User,Tweet,ReportedTweet,userNameChange} from './schema'
 import { getTsBuildInfoEmitOutputFilePath } from 'typescript';
+import cron from 'node-cron'
+import fetch from 'node-fetch'
 
 
 dotenv.config();
@@ -18,13 +20,12 @@ const dbb = new db()
 //server will use long polling and constantly hit the telegram server for chats
 
 
-const { TOKEN,CLIENT_ID,CLIENT_SECRET } = process.env
+const { TOKEN,CLIENT_ID,CLIENT_SECRET,SERVER_URL } = process.env
 console.log("Token is",TOKEN)
 const bot = new Bot(`${TOKEN}`);
 // const TELEGRAM_API = `https://api.telegram.org/bot${TOKEN}`
 // const URI = `/webhook/${TOKEN}`
 // const WEBHOOK_URL = SERVER_URL + URI
-
 
 const app = express()
 app.use(express.json()); // parse the JSON request body
@@ -35,6 +36,33 @@ app.use(session({
   }));
 app.use(passport.session());
 //app.use(webhookCallback(bot, "express"));
+
+function pingServer() {
+    if(SERVER_URL){
+        const url = SERVER_URL; // Replace with your server URL
+        fetch(url)
+          .then(response => {
+            if (response.ok) {
+              console.log(`Server pinged successfully at ${new Date()}`);
+            } else {
+              console.error(`Failed to ping server at ${new Date()}`);
+            }
+          })
+          .catch(error => {
+            console.error(`Error pinging server: ${error}`);
+          });
+    }
+
+  }
+
+
+if(SERVER_URL){
+console.log("setup server pinging complete",SERVER_URL)
+cron.schedule('*/10 * * * *', () => {
+        pingServer();
+     });
+}
+
 
 
 
