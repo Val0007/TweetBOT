@@ -438,7 +438,7 @@ passport_1.default.use(new passport_google_oauth20_1.Strategy({
                         recentTweetid: null
                     });
                     yield user.save();
-                    yield bot.api.sendMessage(userChatId, '<b>You are verified now! Start seeing or sending snaps.</b>', { parse_mode: "HTML" });
+                    yield bot.api.sendMessage(userChatId, '<b>You are verified now! Start seeing or sending tweets. Type /help to know more commands.</b>', { parse_mode: "HTML" });
                     return done(null, { id: profile.id });
                 }
             }

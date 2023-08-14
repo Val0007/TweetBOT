@@ -529,7 +529,7 @@ passport.use(new Strategy({
 
                 await bot.api.sendMessage(
                  userChatId,
-                '<b>You are verified now! Start seeing or sending snaps.</b>',
+                '<b>You are verified now! Start seeing or sending tweets. Type /help to know more commands.</b>',
                 { parse_mode: "HTML" },
                 );
                 return done(null, {id:profile.id}); 
