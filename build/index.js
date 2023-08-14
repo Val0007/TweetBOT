@@ -408,7 +408,7 @@ passport_1.default.deserializeUser(function (user, done) {
 passport_1.default.use(new passport_google_oauth20_1.Strategy({
     clientID: String(CLIENT_ID),
     clientSecret: String(CLIENT_SECRET),
-    callbackURL: `${SERVER_URL}`,
+    callbackURL: `${SERVER_URL}/callback`,
     passReqToCallback: true //passes the req object to this callback
 }, function (request, accessToken, refreshToken, profile, done) {
     return __awaiter(this, void 0, void 0, function* () {

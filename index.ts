@@ -494,7 +494,7 @@ passport.deserializeUser(function(user:any, done) {
 passport.use(new Strategy({
     clientID: String(CLIENT_ID),
     clientSecret: String(CLIENT_SECRET),
-    callbackURL: `${SERVER_URL}`,
+    callbackURL: `${SERVER_URL}/callback`,
     passReqToCallback:true //passes the req object to this callback
   },
   async function(request,accessToken:String, refreshToken:String, profile:any,done:any) {
