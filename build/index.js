@@ -77,7 +77,7 @@ bot.command("login", (ctx) => __awaiter(void 0, void 0, void 0, function* () {
         }
         else {
             //send link
-            yield ctx.api.sendMessage(chatid, `<a href="https://6cac-115-97-93-28.ngrok-free.app/login/${chatid}">Sign up now</a> <i>Use your Svce Mail</i>`, { parse_mode: "HTML" });
+            yield ctx.api.sendMessage(chatid, `<a href="${SERVER_URL}/login/${chatid}">Sign up now</a> <i>Use your Svce Mail</i>`, { parse_mode: "HTML" });
         }
     }
     catch (e) {
@@ -408,7 +408,7 @@ passport_1.default.deserializeUser(function (user, done) {
 passport_1.default.use(new passport_google_oauth20_1.Strategy({
     clientID: String(CLIENT_ID),
     clientSecret: String(CLIENT_SECRET),
-    callbackURL: "https://6cac-115-97-93-28.ngrok-free.app/callback",
+    callbackURL: `${SERVER_URL}`,
     passReqToCallback: true //passes the req object to this callback
 }, function (request, accessToken, refreshToken, profile, done) {
     return __awaiter(this, void 0, void 0, function* () {
