@@ -88,7 +88,7 @@ bot.command("login",async (ctx) => {
             //send link
             await ctx.api.sendMessage(
                 chatid,
-                `<a href="https://tweetbot-th5h.onrender.com/login/${chatid}">Sign up now</a> <i>Use your Svce Mail</i>`,
+                `<a href="${SERVER_URL}/login/${chatid}">Sign up now</a> <i>Use your Svce Mail</i>`,
                 { parse_mode: "HTML" },
               );
         }
@@ -494,7 +494,7 @@ passport.deserializeUser(function(user:any, done) {
 passport.use(new Strategy({
     clientID: String(CLIENT_ID),
     clientSecret: String(CLIENT_SECRET),
-    callbackURL: "https://tweetbot-th5h.onrender.com/callback",
+    callbackURL: `${SERVER_URL}`,
     passReqToCallback:true //passes the req object to this callback
   },
   async function(request,accessToken:String, refreshToken:String, profile:any,done:any) {
