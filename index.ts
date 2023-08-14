@@ -8,7 +8,7 @@ import {Strategy} from 'passport-google-oauth20'
 import passport, { use } from 'passport'
 import session from 'express-session'
 import db from './db'
-import {User,Tweet,ReportedTweet} from './schema'
+import {User,Tweet,ReportedTweet,userNameChange} from './schema'
 import { getTsBuildInfoEmitOutputFilePath } from 'typescript';
 
 
@@ -275,7 +275,7 @@ bot.command("changeusername",async(ctx)=>{
         const chat = await ctx.getChat()
         const chatid = String(chat.id)
         const user = await User.findOne({chatid:chatid})
-
+        const oldName = user?.userName
 
         //change username
         if(user){
@@ -293,7 +293,9 @@ bot.command("changeusername",async(ctx)=>{
                 return
             }
             user.userName = uName
-            user.save()
+            let usernamechange = new userNameChange({fromName:oldName,toName:uName,chatid:chatid})
+            await usernamechange.save()
+            await user.save()
             await ctx.reply("Username has been changed successfully")
         }
         else{

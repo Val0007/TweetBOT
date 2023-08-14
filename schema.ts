@@ -29,8 +29,15 @@ let ReportedtweetSchema = new Schema({
     reportedby:String //chatid
 })
 
+let userNameChangeSchema = new Schema({
+    fromName:String,
+    toName:String,
+    chatid:String
+})
+
 const User = mongoose.model('User', userSchema);
 const Tweet = mongoose.model('Tweet', tweetSchema);
 const ReportedTweet = mongoose.model('ReportedTweet', ReportedtweetSchema);
+const userNameChange = mongoose.model('UserNameChange', userNameChangeSchema)
 
-export { User, Tweet,ReportedTweet };
+export { User, Tweet,ReportedTweet,userNameChange };

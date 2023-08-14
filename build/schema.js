@@ -23,7 +23,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.ReportedTweet = exports.Tweet = exports.User = void 0;
+exports.userNameChange = exports.ReportedTweet = exports.Tweet = exports.User = void 0;
 const mongoose_1 = __importStar(require("mongoose"));
 let userSchema = new mongoose_1.Schema({
     firstName: String,
@@ -51,9 +51,16 @@ let ReportedtweetSchema = new mongoose_1.Schema({
     timestamp: { type: Date, default: Date.now },
     reportedby: String //chatid
 });
+let userNameChangeSchema = new mongoose_1.Schema({
+    fromName: String,
+    toName: String,
+    chatid: String
+});
 const User = mongoose_1.default.model('User', userSchema);
 exports.User = User;
 const Tweet = mongoose_1.default.model('Tweet', tweetSchema);
 exports.Tweet = Tweet;
 const ReportedTweet = mongoose_1.default.model('ReportedTweet', ReportedtweetSchema);
 exports.ReportedTweet = ReportedTweet;
+const userNameChange = mongoose_1.default.model('UserNameChange', userNameChangeSchema);
+exports.userNameChange = userNameChange;

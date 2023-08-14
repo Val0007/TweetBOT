@@ -227,6 +227,7 @@ bot.command("changeusername", (ctx) => __awaiter(void 0, void 0, void 0, functio
         const chat = yield ctx.getChat();
         const chatid = String(chat.id);
         const user = yield schema_1.User.findOne({ chatid: chatid });
+        const oldName = user === null || user === void 0 ? void 0 : user.userName;
         //change username
         if (user) {
             let uName = ctx.match;
@@ -243,7 +244,9 @@ bot.command("changeusername", (ctx) => __awaiter(void 0, void 0, void 0, functio
                 return;
             }
             user.userName = uName;
-            user.save();
+            let usernamechange = new schema_1.userNameChange({ fromName: oldName, toName: uName, chatid: chatid });
+            yield usernamechange.save();
+            yield user.save();
             yield ctx.reply("Username has been changed successfully");
         }
         else {
